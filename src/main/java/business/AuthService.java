@@ -1,6 +1,7 @@
+package business;
+
 import DAO.UserDAO;
 import entities.User;
-import utility.ComplexityChecker;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -14,12 +15,12 @@ public class AuthService {
         UserDAO userDao = new UserDAO();
         User user = userDao.getUserByUsername(username);
         if (user == null) {
-            System.out.println("Failed to authenticate user: no such user found");
+            System.out.println("Failed to authenticate user: user or password does not match");
             return false;
         }
         String hashPassIn = hashWithSalt(password, user.getSalt());
         if (!hashPassIn.equals(user.getPassword_hash())) {
-            System.out.println("Failed to authenticate user: password does not match");
+            System.out.println("Failed to authenticate user: user or password does not match");
             return true;
         }
         System.out.println("Successfully authenticated user");

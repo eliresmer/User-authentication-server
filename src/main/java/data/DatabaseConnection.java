@@ -9,7 +9,7 @@ public class DatabaseConnection {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            String url = "jdbc:mysql://localhost:3306/javaproducts";
+            String url = "jdbc:mysql://localhost:3306/secure_auth_db";
             String username = "root";
             String password = "ertyerty12";
             return DriverManager.getConnection(url, username, password);

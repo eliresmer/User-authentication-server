@@ -22,7 +22,7 @@ public class UserDAO {
         PreparedStatement ps = null;
 
         String query
-                = "INSERT INTO userinfo (username, passwordHash, salt) "
+                = "INSERT INTO users (username, password_hash, salt) "
                 + "VALUES (?, ?, ?)";
         try {
             ps = connection.prepareStatement(query);
@@ -48,7 +48,7 @@ public class UserDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User user = new User();
-        String query = "SELECT * FROM userinfo WHERE username = ?";
+        String query = "SELECT * FROM users WHERE username = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -75,7 +75,7 @@ public class UserDAO {
         PreparedStatement preparedStatement = null;
         ResultSet resultSet = null;
         User user = new User();
-        String query = "SELECT username, passwordHash, salt FROM userinfo WHERE username = ?";
+        String query = "SELECT username, password_hash, salt FROM users WHERE username = ?";
 
         try {
             preparedStatement = connection.prepareStatement(query);
@@ -84,7 +84,7 @@ public class UserDAO {
             if (resultSet.next()) {
                 user = new User();
                 user.setUsername(resultSet.getString("username"));
-                user.setPassword_hash(resultSet.getString("passwordHash"));
+                user.setPassword_hash(resultSet.getString("password_hash"));
                 user.setSalt(resultSet.getString("salt"));
                 return user;
             }
@@ -105,8 +105,8 @@ public class UserDAO {
         Connection connection = dbc.getConnection();
         PreparedStatement preparedStatement = null;
 
-        String query = "UPDATE userinfo SET "
-                + "passwordHash = ? "
+        String query = "UPDATE users SET "
+                + "password_hash = ? "
                 + "WHERE username = ?";
         try {
             preparedStatement = connection.prepareStatement(query);
