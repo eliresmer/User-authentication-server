@@ -1,8 +1,6 @@
 Eli Resmer 
 
-Assignment 3: Secure Authentication System
-
-User Guide
+Secure Authentication System User Guide
 
 ## Step 1: Database Setup
 
